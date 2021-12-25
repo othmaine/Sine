@@ -1,0 +1,65 @@
+
+package sine;
+import java.util.Scanner;
+import java.util.InputMismatchException;
+
+public class Sine 
+{
+
+    public static void main(String[] args) 
+    {
+        Scanner x =new Scanner (System.in);
+        String question = "";
+        while (!question.equalsIgnoreCase("stop")) 
+        {
+        System.out.print("Please enter the angle: ");
+        try
+        {
+            float angle = x.nextFloat();
+            double z= sin(angle);
+            System.out.println("Sin("+angle+")="+z);
+        }
+        catch(InputMismatchException e)
+        {
+            System.err.println("please enter a number only");
+            x.next();
+        }
+        System.out.println("Enter stop to stop , enter any thing else to continue ");
+            question = x.next();
+        }
+        
+    }
+    static double factor(double number)
+    {
+        double factorial =1;
+        for(int counter =1;counter <= number;counter++)
+        {
+            factorial =factorial *counter;
+        }
+        return (factorial);
+        
+    }
+    static double power(double powerOf,double power )
+        {
+            double result =1;
+            for(int counter =1;counter<=power;counter++)
+            {
+                result *=powerOf;
+            }
+            return result;
+        }
+    static double sin(double x)
+    {
+        double result =0;
+        int sign =1;
+        for(int counter =1;counter<=100;counter +=2)
+        {
+           result+= sign*(power(x,counter))/factor(counter);
+           sign*=(-1);
+            
+        }
+        return result;
+    }
+    
+    
+}
